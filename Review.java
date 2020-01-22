@@ -182,4 +182,38 @@ public class Review {
       return randomNegativeAdj();
     }
   }
+  public static String fakeReview(String fileName)
+      {
+        String review = textToString(fileName);
+        String placeHolder = "";
+        String endResult = "";
+        for (int i = 0; i < review.length(); i++)
+          {
+            if (review.substring(i, i+1).equals(" ") || i == review.length() - 1)
+            {
+              if (i == review.length() -1)  placeHolder += review.substring(i, i+1); // adds the last character in the file to the word. 
+              
+              if (placeHolder.startsWith("*"))
+              {
+                String newAdj = "";
+                while (newAdj.equals(""))
+                    newAdj = randomPositiveAdj();
+                endResult += newAdj + getPunctuation(placeHolder) + " ";
+                placeHolder = "";
+              }
+              else 
+              {
+                endResult += placeHolder + " ";
+                placeHolder = "";
+              }
+            } 
+            else
+            {
+              placeHolder += review.substring(i, i+1);
+            }
+
+          }
+          return endResult;
+    }
+
 }
