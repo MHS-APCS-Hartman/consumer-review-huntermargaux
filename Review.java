@@ -151,55 +151,6 @@ public class Review {
      return totalSentiment;
    }
 
-
-   public static int starRating(String fileName)
-   {
-      if(totalSentiment(fileName) <= -3)
-      {
-         return 1;
-      }
-      else if(totalSentiment(fileName) <= -1)
-      {
-         return 2;
-      }
-      else if(totalSentiment(fileName) <= 1)
-      {
-         return 3;
-      }
-      else if(totalSentiment(fileName) <= 3)
-      {
-         return 4;
-      }
-      else
-      {
-         return 5;
-      }
-   }
-  
-  //I really need help figuring out this method!!
-   public static String fakeReview(fileName)
-   {
-      String word = "";
-     https://www.pandora.com/ String newWord = "";
-      for(int i = 0; i < review.length(); i++)
-      {
-         if(review.substring(i, i+1).equals("*"))
-         {
-            for(int j = 0; j < review.length(); j++)
-            {
-               if(review.substring(i, i+1).equals(" "))
-               {
-                  newWord = randomPositiveAdj() || randomNegativeAdj();
-                  word = "";
-               }else{
-                  word += review.subtring(j, j+1);
-               }
-            }
-         }
-      }return newWord;
-   }
-                  
-  
   /** 
    * Randomly picks a positive adjective from the positiveAdjectives.txt file and returns it.
    */
