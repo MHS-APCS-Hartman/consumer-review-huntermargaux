@@ -131,9 +131,26 @@ public class Review {
     return word;
   }
  
+  public static double totalSentiment(String fileName)
+  {
+    String word = "";
+    double totalSentiment = 0.0;
+    String review = textToString(fileName);
+    review.replaceAll("\\p{Punct}", "");
+    for (int i = 0; i < review.length(); i++)
+    {
+       if(review.substring(i, i+1).equals(" "))
+       {
+          totalSentiment += sentimentVal(word);
+          word = "";
+       }else{
+          word += review.substring(i, i+1);
+          removePunctuation(word);
+       }
+     }
+     return totalSentiment;
+   }
 
-
-  
   /** 
    * Randomly picks a positive adjective from the positiveAdjectives.txt file and returns it.
    */
