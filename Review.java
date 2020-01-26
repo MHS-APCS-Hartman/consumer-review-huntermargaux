@@ -182,4 +182,29 @@ public class Review {
       return randomNegativeAdj();
     }
   }
+  public static String fakeReview(String fileName)
+  {
+      String review = removePunctuation(textToString(fileName));
+      String ret = "";
+      int pos = 0;
+      for(int i = 0; i < review.length(); i++)
+      {
+         String cur = review.substring(i, i+1);
+         if(!cur.equals("*"))
+         {
+            ret += cur;
+         }
+         else
+         {
+            i++;
+            while(!review.substring(i, i+1).equals(" ") && i < review.length() - 1)
+            {
+               i++;
+            }
+            ret += randomAdjective() + " ";
+         }
+      }
+      return ret;
+  }
+
 }
