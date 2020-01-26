@@ -182,29 +182,56 @@ public class Review {
       return randomNegativeAdj();
     }
   }
-  public static String fakeReview(String fileName)
+  
+  public static String fakeReviewStronger(String fileName)
   {
-      String review = removePunctuation(textToString(fileName));
-      String ret = "";
-      int pos = 0;
-      for(int i = 0; i < review.length(); i++)
+   String toBeTested = textToString(fileName);
+   String adjective = "";
+   String newAdjective = "";
+   String placeholder = "";
+   boolean asteriskDetected = false;
+   
+   for (int i = 0; i < toBeTested.length(); i++)
+   {
+      if (toBeTested.substring(i, i+1).equals("*"))
       {
-         String cur = review.substring(i, i+1);
-         if(!cur.equals("*"))
-         {
-            ret += cur;
-         }
-         else
-         {
-            i++;
-            while(!review.substring(i, i+1).equals(" ") && i < review.length() - 1)
-            {
-               i++;
-            }
-            ret += randomAdjective() + " ";
-         }
+         asteriskDetected = true;
       }
-      return ret;
+      
+      else if (toBeTested.substring(i, i+1).equals(" ") && asteriskDetected)
+      {
+         while (true)
+         {
+            newAdjective = randomAdjective();
+            if ( (sentimentVal(adjective) > 0) && (sentimentVal(newAdjective) > sentimentVal(adjective)) )
+            {
+               break;
+            }
+            else if ( (sentimentVal(adjective) < 0) && (sentimentVal(newAdjective) < sentimentVal(adjective)) )
+            {
+               break;
+            }
+            else if (sentimentVal(adjective) == 0)
+            {
+               break;
+            }
+         }
+         
+         placeholder += newAdjective + " ";
+         asteriskDetected = false;
+         adjective = "";
+      }
+      //else if (asteriskDetected == true)
+      //{
+        // adjective += toBeTested.substring(i, i+1);
+      //}
+      
+      else if (asteriskDetected == false)
+      {
+         placeholder += toBeTested.substring(i, i+1);
+      }
+   }
+   return placeholder;
   }
 
 }
