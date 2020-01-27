@@ -375,6 +375,39 @@ public class Review {
     }
   }
   
+  public static String fakeReview1(String fileName)
+  {
+      String placeHolder = "";
+      int a = 0;
+      int b = 0;
+      String review = textToString(fileName);
+      removePunctuation(placeHolder);
+      for(int i  = 0; i < review.length(); i++)
+      {
+         String cur = review.substring(i, i+1);
+         if(cur.equals("*"))
+         {
+            i++;
+            a = i;
+            while(true)
+            {
+               if(!cur.equals(" ") && i <= review.length() - 1)
+               {
+                  placeHolder += cur;
+                  i++;
+               }
+               else
+               {
+                  break;
+               }
+            }
+            b = i;
+         }
+         review = review.substring(0, a) + randomAdjective() + review.substring(b);
+      }
+      return review;
+  }
+
   public static String fakeReviewStronger(String fileName)
   {
    String toBeTested = textToString(fileName);
