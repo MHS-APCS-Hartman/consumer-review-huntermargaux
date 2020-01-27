@@ -446,10 +446,10 @@ public class Review {
          asteriskDetected = false;
          adjective = "";
       }
-      //else if (asteriskDetected == true)
-      //{
-        // adjective += toBeTested.substring(i, i+1);
-      //}
+      else if (asteriskDetected == true)
+      {
+         adjective += toBeTested.substring(i, i+1);
+      }
       
       else if (asteriskDetected == false)
       {
