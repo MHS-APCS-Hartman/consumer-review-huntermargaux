@@ -184,7 +184,7 @@ public class Review {
          return 5;
       }
    }
-} 
+    
   public static double totalSentiment(String fileName)
   {
     String word = "";
